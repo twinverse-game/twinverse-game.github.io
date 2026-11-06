@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <link rel="icon" href="data:," />
+    <title>TwinVerse — DEMO-4 Beta</title>
+    <script type="module" crossorigin src="/assets/index-BmCEovfZ.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/typeStore-CuqQeP4D.js">
+    <link rel="modulepreload" crossorigin href="/assets/logger-CuBYPcDK.js">
+    <link rel="modulepreload" crossorigin href="/assets/guid-DBDUbt8u.js">
+    <link rel="modulepreload" crossorigin href="/assets/tools.pure-ChtwVzoQ.js">
+    <link rel="modulepreload" crossorigin href="/assets/math.scalar.functions-BUpXP_7j.js">
+    <link rel="modulepreload" crossorigin href="/assets/math.color.pure-_VUKJmHR.js">
+    <link rel="modulepreload" crossorigin href="/assets/baseTexture.pure-DjNXyzZj.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-Dk_zSpWs.css">
+  <meta name="robots" content="noindex,nofollow">
+</head>
+  <body>
+    <div id="app">
+      <!-- Portrait warning overlay (Landscape mandatory per Technical Bible #5) -->
+      <div id="orientation-warning" class="orientation-overlay hidden">
+        <div class="overlay-content">
+          <div class="rotate-icon">↺</div>
+          <p class="overlay-title">RUOTA IL DISPOSITIVO</p>
+          <p class="overlay-subtitle">TwinVerse richiede orientamento orizzontale (Landscape)</p>
+        </div>
+      </div>
+
+      <!-- Persistent Diegetic Console / Frame Shell -->
+      <div id="twinverse-frame" class="twinverse-console">
+        <!-- Thin outer perimeter bezel -->
+        <div class="console-bezel">
+          <!-- Top area: Adaptive Gameplay Viewport -->
+          <div class="viewport-container">
+            <canvas id="renderCanvas" touch-action="none"></canvas>
+            
+            <!-- In-game Diegetic Transition Overlay -->
+            <div id="transition-overlay" class="diegetic-overlay hidden">
+              <div class="transition-card">
+                <span class="transition-title">QUADRO SUCCESSIVO</span>
+                <span id="transition-text" class="transition-desc">Preparazione del flusso di realtà...</span>
+                <div class="transition-bar"><div class="bar-fill"></div></div>
+              </div>
+            </div>
+            <div id="pause-overlay" class="diegetic-overlay hidden">
+              <div class="transition-card">
+                <span class="transition-title">PAUSA</span>
+                <span class="transition-desc">Premi START per riprendere.</span>
+              </div>
+            </div>
+            <div id="audio-entry-overlay" class="diegetic-overlay hidden">
+              <div class="transition-card">
+                <span class="transition-title">FONEMBALO IN ARRIVO</span>
+                <span class="transition-desc">Abilita l'audio per entrare nella tana di Evy.</span>
+                <button id="btn-enter-lair" class="sys-btn entry-audio-button" type="button">ENTRA NELLA TANA</button>
+              </div>
+            </div>
+            <div id="scene-banner" class="scene-banner hidden" role="status" aria-live="polite">
+              <span id="scene-banner-speaker" class="scene-banner-speaker hidden"></span>
+              <span id="scene-banner-text"></span>
+              <span class="scene-banner-prompt">Premi A per continuare <span class="key-tag">[O]</span></span>
+            </div>
+          </div>
+
+          <!-- Bottom area: Persistent Control Deck (Plancia Comandi 90s Handheld) -->
+          <div class="control-deck">
+            <!-- Left side: Vintage Game Boy D-Pad -->
+            <div class="deck-section deck-left">
+              <div class="dpad-wrapper">
+                <div class="dpad" id="dpad" role="group" aria-label="Pad direzionale WASD">
+                  <div class="dpad-btn dpad-up" data-dir="up">
+                    <svg class="dpad-svg-arrow" viewBox="0 0 44 44" aria-hidden="true">
+                      <path d="M 22 2 L 41 18 L 31 18 L 31 42 L 13 42 L 13 18 L 3 18 Z" class="dpad-arrow-path"/>
+                      <text x="22" y="30" class="dpad-letter-text">W</text>
+                    </svg>
+                  </div>
+                  <div class="dpad-btn dpad-left" data-dir="left">
+                    <svg class="dpad-svg-arrow" viewBox="0 0 44 44" aria-hidden="true">
+                      <path d="M 2 22 L 18 3 L 18 13 L 42 13 L 42 31 L 18 31 L 18 41 Z" class="dpad-arrow-path"/>
+                      <text x="30" y="22" class="dpad-letter-text">A</text>
+                    </svg>
+                  </div>
+                  <div class="dpad-center" id="dpad-stick"></div>
+                  <div class="dpad-btn dpad-right" data-dir="right">
+                    <svg class="dpad-svg-arrow" viewBox="0 0 44 44" aria-hidden="true">
+                      <path d="M 42 22 L 26 3 L 26 13 L 2 13 L 2 31 L 26 31 L 26 41 Z" class="dpad-arrow-path"/>
+                      <text x="14" y="22" class="dpad-letter-text">D</text>
+                    </svg>
+                  </div>
+                  <div class="dpad-btn dpad-down" data-dir="down">
+                    <svg class="dpad-svg-arrow" viewBox="0 0 44 44" aria-hidden="true">
+                      <path d="M 22 42 L 41 26 L 31 26 L 31 2 L 13 2 L 13 26 L 3 26 Z" class="dpad-arrow-path"/>
+                      <text x="22" y="14" class="dpad-letter-text">S</text>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Center section: Status Display, Moves Guide & System Buttons -->
+            <div class="deck-section deck-center">
+              <div class="console-brand-row">
+                <div class="battery-indicator"><span class="battery-led"></span><span class="battery-text">BATTERY</span></div>
+                <div class="console-brand">TWINVERSE // ARCADE '90s</div>
+              </div>
+              <div class="status-screen" id="status-display">
+                <div class="status-header-bar">
+                  <span class="status-mode-tag" id="status-mode-tag">ESPLORAZIONE</span>
+                  <span class="status-secondary-info" id="lbl-narrative">ARRIVO NELLA TANA</span>
+                </div>
+                <div class="status-primary-feed" id="lbl-feed">Esplora liberamente la stanza con [WASD]</div>
+                <div class="status-controls-strip" id="status-controls-strip">
+                  <span class="ctrl-tag"><b class="key">[WASD]</b> MUOVI</span>
+                  <span class="ctrl-tag"><b class="key">[SPAZIO]</b> SALTO</span>
+                  <span class="ctrl-tag"><b class="key">[K]</b> SCATTO</span>
+                  <span class="ctrl-tag"><b class="key">[O]</b> AZIONE</span>
+                </div>
+                <!-- Legacy fields preserved for GSM/Audio status listeners -->
+                <div class="status-debug-hidden" style="display:none;" aria-hidden="true">
+                  <span id="lbl-state">BOOT</span>
+                  <span id="lbl-assets">In attesa...</span>
+                  <span id="lbl-quality">NOMINALE</span>
+                  <span id="lbl-audio">ATTESA INPUT</span>
+                </div>
+              </div>
+              <!-- Dynamic combat moves guide badge -->
+              <div id="combat-moves-guide" class="combat-moves-guide hidden">
+                <span class="move-pill move-pill-parry"><span class="move-key">[Z]</span> PARATA</span>
+                <span class="move-pill move-pill-a"><span class="move-key">[O]</span> CALCIO (A)</span>
+                <span class="move-pill move-pill-b"><span class="move-key">[K]</span> PUGNO (B)</span>
+                <span class="move-pill move-pill-jump"><span class="move-key">[SPAZIO]</span> SALTO</span>
+              </div>
+              <div class="system-buttons">
+                <button id="btn-select" class="sys-pill-btn" type="button" aria-label="Select">
+                  <span class="sys-btn-text">SELECT</span>
+                </button>
+                <button id="btn-start" class="sys-pill-btn sys-start-btn" type="button" aria-label="Start (Invio)">
+                  <span class="sys-btn-text">START <span class="sys-key-tag">[INVIO]</span></span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Right side: Game Boy A & B Action Buttons with keyboard mapping -->
+            <div class="deck-section deck-right">
+              <div class="action-buttons gameboy-layout">
+                <!-- B button: Action 2 / Punch / Sprint -->
+                <div class="gameboy-btn-slot slot-b">
+                  <button id="btn-action-2" class="action-btn btn-secondary btn-gameboy-b" type="button" aria-label="Pulsante B (K - Scatto / Pugno)">
+                    <span class="btn-letter">B</span>
+                    <span class="btn-keyboard-tag">[K]</span>
+                  </button>
+                  <span class="btn-function-label" id="btn-b-action">SCATTO</span>
+                </div>
+                <!-- A button: Action 1 / Kick / Interact / Primary -->
+                <div class="gameboy-btn-slot slot-a">
+                  <button id="btn-action-1" class="action-btn btn-primary btn-gameboy-a" type="button" aria-label="Pulsante A (O - Azione / Calcio)">
+                    <span class="btn-letter">A</span>
+                    <span class="btn-keyboard-tag">[O]</span>
+                  </button>
+                  <span class="btn-function-label" id="btn-a-action">AZIONE</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <a href="/credits.html" target="_blank" rel="noopener" style="position:fixed;left:8px;bottom:3px;z-index:10000;color:#cde9ef;font:10px monospace">Crediti</a>
+</body>
+</html>
