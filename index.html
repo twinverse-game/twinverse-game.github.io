@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
     <link rel="icon" href="data:," />
-    <title>TwinVerse — DEMO-4 / Mobile UI &amp; Audio Review</title>
-    <script type="module" crossorigin src="/assets/index-DdRnmvTn.js"></script>
+    <title>TwinVerse — DEMO-4 / Mobile Console Polish</title>
+    <script type="module" crossorigin src="/assets/index-DrU5VK1r.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/typeStore-CuqQeP4D.js">
     <link rel="modulepreload" crossorigin href="/assets/logger-CuBYPcDK.js">
     <link rel="modulepreload" crossorigin href="/assets/guid-DBDUbt8u.js">
@@ -13,7 +13,7 @@
     <link rel="modulepreload" crossorigin href="/assets/math.scalar.functions-BUpXP_7j.js">
     <link rel="modulepreload" crossorigin href="/assets/math.color.pure-_VUKJmHR.js">
     <link rel="modulepreload" crossorigin href="/assets/baseTexture.pure-DjNXyzZj.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-BE1wQtjJ.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-BS7hlljk.css">
       <meta name="robots" content="noindex,nofollow">
   </head>
   <body>
@@ -62,9 +62,18 @@
             <div class="deck-section deck-left">
               <div class="dpad-wrapper">
                 <div class="dpad" id="dpad" role="group" aria-label="Pad direzionale WASD">
+                  <svg class="dpad-shell" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+                    <defs>
+                      <linearGradient id="dpad-finish" x2="0%" y2="100%">
+                        <stop stop-color="#545354"/>
+                        <stop offset="1" stop-color="#29282a"/>
+                      </linearGradient>
+                    </defs>
+                    <path fill="url(#dpad-finish)" stroke="#242325" stroke-width="2"
+                      d="M40 2H60Q66 2 66 8V30Q66 34 70 34H92Q98 34 98 40V60Q98 66 92 66H70Q66 66 66 70V92Q66 98 60 98H40Q34 98 34 92V70Q34 66 30 66H8Q2 66 2 60V40Q2 34 8 34H30Q34 34 34 30V8Q34 2 40 2Z"/>
+                  </svg>
                   <span class="dpad-btn dpad-up" data-dir="up" aria-hidden="true">▲</span>
                   <span class="dpad-btn dpad-left" data-dir="left" aria-hidden="true">◀</span>
-                  <span class="dpad-center" aria-hidden="true"></span>
                   <span class="dpad-btn dpad-right" data-dir="right" aria-hidden="true">▶</span>
                   <span class="dpad-btn dpad-down" data-dir="down" aria-hidden="true">▼</span>
                 </div>
@@ -104,14 +113,22 @@
                 <span class="move-pill move-pill-jump"><span class="move-key">[SPAZIO]</span> SALTO</span>
               </div>
               <div class="system-buttons">
-                <button id="btn-select" class="sys-pill-btn" type="button" aria-label="Select">
-                  <span class="sys-btn-text">SELECT</span>
+                <button id="btn-enter-lair" class="console-utility audio-toggle" type="button" aria-label="Attiva audio" aria-pressed="false" disabled>
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M3 9h4l5-4v14l-5-4H3z" fill="currentColor"/>
+                    <path d="M15 9a4 4 0 0 1 0 6m2-9a8 8 0 0 1 0 12" class="audio-waves"/>
+                    <path d="M4 3l16 18" class="audio-slash"/>
+                  </svg>
                 </button>
-                <button id="btn-start" class="sys-pill-btn sys-start-btn" type="button" aria-label="Start (Invio)">
-                  <span class="sys-btn-text">START <span class="sys-key-tag">[INVIO]</span></span>
-                </button>
+                <div class="system-pair">
+                  <button id="btn-select" class="sys-pill-btn" type="button" aria-label="Select">
+                    <span class="sys-btn-text">SELECT</span>
+                  </button>
+                  <button id="btn-start" class="sys-pill-btn sys-start-btn" type="button" aria-label="Start (Invio)">
+                    <span class="sys-btn-text">START <span class="sys-key-tag">[INVIO]</span></span>
+                  </button>
+                </div>
                 <button id="btn-info" class="console-utility info-toggle" type="button" aria-label="Info comandi" aria-haspopup="dialog" aria-controls="console-info" disabled>ⓘ</button>
-                <button id="btn-enter-lair" class="console-utility audio-toggle" type="button" aria-pressed="false" disabled>Attiva audio</button>
               </div>
             </div>
 
