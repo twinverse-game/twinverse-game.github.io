@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
     <link rel="icon" href="data:," />
-    <title>TwinVerse — DEMO-4 Beta</title>
-    <script type="module" crossorigin src="/assets/index-BmCEovfZ.js"></script>
+    <title>TwinVerse — DEMO-4 / Release Candidate</title>
+    <script type="module" crossorigin src="/assets/index-DB6z1IHM.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/typeStore-CuqQeP4D.js">
     <link rel="modulepreload" crossorigin href="/assets/logger-CuBYPcDK.js">
     <link rel="modulepreload" crossorigin href="/assets/guid-DBDUbt8u.js">
@@ -13,12 +13,12 @@
     <link rel="modulepreload" crossorigin href="/assets/math.scalar.functions-BUpXP_7j.js">
     <link rel="modulepreload" crossorigin href="/assets/math.color.pure-_VUKJmHR.js">
     <link rel="modulepreload" crossorigin href="/assets/baseTexture.pure-DjNXyzZj.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-Dk_zSpWs.css">
-  <meta name="robots" content="noindex,nofollow">
-</head>
+    <link rel="stylesheet" crossorigin href="/assets/index-JS3lOlZI.css">
+      <meta name="robots" content="noindex,nofollow">
+  </head>
   <body>
     <div id="app">
-      <!-- Portrait warning overlay (Landscape mandatory per Technical Bible #5) -->
+      <!-- Historical orientation hint retained hidden; DEMO-4 RC supports native portrait. -->
       <div id="orientation-warning" class="orientation-overlay hidden">
         <div class="overlay-content">
           <div class="rotate-icon">↺</div>
@@ -49,12 +49,8 @@
                 <span class="transition-desc">Premi START per riprendere.</span>
               </div>
             </div>
-            <div id="audio-entry-overlay" class="diegetic-overlay hidden">
-              <div class="transition-card">
-                <span class="transition-title">FONEMBALO IN ARRIVO</span>
-                <span class="transition-desc">Abilita l'audio per entrare nella tana di Evy.</span>
-                <button id="btn-enter-lair" class="sys-btn entry-audio-button" type="button">ENTRA NELLA TANA</button>
-              </div>
+            <div id="audio-entry-overlay" class="audio-unlock-prompt hidden">
+              <button id="btn-enter-lair" type="button" aria-label="Attiva l’audio della tana">♪ Attiva audio</button>
             </div>
             <div id="scene-banner" class="scene-banner hidden" role="status" aria-live="polite">
               <span id="scene-banner-speaker" class="scene-banner-speaker hidden"></span>
@@ -65,6 +61,7 @@
 
           <!-- Bottom area: Persistent Control Deck (Plancia Comandi 90s Handheld) -->
           <div class="control-deck">
+            <div id="portrait-caption-slot" class="portrait-caption-slot"></div>
             <!-- Left side: Vintage Game Boy D-Pad -->
             <div class="deck-section deck-left">
               <div class="dpad-wrapper">
@@ -166,6 +163,6 @@
         </div>
       </div>
     </div>
-  <a href="/credits.html" target="_blank" rel="noopener" style="position:fixed;left:8px;bottom:3px;z-index:10000;color:#cde9ef;font:10px monospace">Crediti</a>
-</body>
+    <a href="/credits.html" target="_blank" rel="noopener" style="position:fixed;left:max(8px,env(safe-area-inset-left));bottom:max(3px,env(safe-area-inset-bottom));z-index:10000;color:#cde9ef;font:10px monospace">Crediti</a>
+  </body>
 </html>
